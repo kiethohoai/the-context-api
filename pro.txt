@@ -2,3 +2,4 @@
 004 Creating and Providing a Context
 005 Consuming the Context
 006 Advanced Pattern A Custom Provider and Hook
+007 Thinking In React Advanced State Management
