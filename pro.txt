@@ -1,3 +1,4 @@
 003 What is the Context API
 004 Creating and Providing a Context
 005 Consuming the Context
+006 Advanced Pattern A Custom Provider and Hook
