@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { faker } from '@faker-js/faker';
 
 function createRandomPost() {
@@ -67,22 +67,24 @@ function App() {
   );
 }
 
-function Header({ posts, onClearPosts, searchQuery, setSearchQuery }) {
+function Header() {
+  const { onClearPosts } = useContext(AppContext);
   return (
     <header>
       <h1>
         <span>⚛️</span>The Atomic Blog
       </h1>
       <div>
-        <Results posts={posts} />
-        <SearchPosts searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Results />
+        <SearchPosts />
         <button onClick={onClearPosts}>Clear posts</button>
       </div>
     </header>
   );
 }
 
-function SearchPosts({ searchQuery, setSearchQuery }) {
+function SearchPosts() {
+  const { searchQuery, setSearchQuery } = useContext(AppContext);
   return (
     <input
       value={searchQuery}
@@ -92,15 +94,16 @@ function SearchPosts({ searchQuery, setSearchQuery }) {
   );
 }
 
-function Results({ posts }) {
+function Results() {
+  const { posts } = useContext(AppContext);
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main({ posts, onAddPost }) {
+function Main() {
   return (
     <main>
-      <FormAddPost onAddPost={onAddPost} />
-      <Posts posts={posts} />
+      <FormAddPost />
+      <Posts />
     </main>
   );
 }
@@ -108,14 +111,15 @@ function Main({ posts, onAddPost }) {
 function Posts({ posts }) {
   return (
     <section>
-      <List posts={posts} />
+      <List />
     </section>
   );
 }
 
-function FormAddPost({ onAddPost }) {
+function FormAddPost() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const { onAddPost } = useContext(AppContext);
 
   const handleSubmit = function (e) {
     e.preventDefault();
@@ -134,7 +138,8 @@ function FormAddPost({ onAddPost }) {
   );
 }
 
-function List({ posts }) {
+function List() {
+  const { posts } = useContext(AppContext);
   return (
     <ul>
       {posts.map((post, i) => (
@@ -147,14 +152,14 @@ function List({ posts }) {
   );
 }
 
-function Archive({ onAddPost }) {
+function Archive() {
   // Here we don't need the setter function. We're only using state to store these posts because the callback function passed into useState (which generates the posts) is only called once, on the initial render. So we use this trick as an optimization technique, because if we just used a regular variable, these posts would be re-created on every render. We could also move the posts outside the components, but I wanted to show you this trick 😉
   const [posts] = useState(() =>
     // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
     Array.from({ length: 10000 }, () => createRandomPost()),
   );
-
   const [showArchive, setShowArchive] = useState(false);
+  const { onAddPost } = useContext(AppContext);
 
   return (
     <aside>
