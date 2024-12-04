@@ -11,3 +11,4 @@
 007 Understanding useMemo and useCallback
 008 useMemo in Practice
 009 useCallback in Practice
+010 Optimizing Context Re-Renders
