@@ -10,3 +10,4 @@
 006 memo in Practice
 007 Understanding useMemo and useCallback
 008 useMemo in Practice
+009 useCallback in Practice
