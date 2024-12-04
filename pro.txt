@@ -8,3 +8,4 @@
 004 A Surprising Optimization Trick With children
 005 Understanding memo
 006 memo in Practice
+007 Understanding useMemo and useCallback
