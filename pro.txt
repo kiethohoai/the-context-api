@@ -7,3 +7,4 @@
 003 The Profiler Developer Tool`
 004 A Surprising Optimization Trick With children
 005 Understanding memo
+006 memo in Practice
